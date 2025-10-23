@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+:root {
+    --bg: #f5f7fb;
+    --panel: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --primary: #2563eb;
+    --hover: #eef2ff;
+    --border: #e5e7eb;
+}
+
+
+* { box-sizing: border-box; }
+html, body, #app { height: 100%; margin: 0; }
+
+body {
+    font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.brand {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 800; letter-spacing: .5px;
+    padding: 8px 10px; margin-bottom: 8px;
+}
+
+.menu { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.item {
+    text-decoration: none;
+    color: var(--text);
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    border: 1px solid transparent;
+}
+.item:hover { background: var(--hover); }
+.item.router-link-active {
+    background: #eef6ff;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.content {
+    min-width: 0;
+    padding: 20px 28px;
+    overflow: auto;
+}
+
+.page-header {
+    position: sticky; top: 0; background: var(--bg);
+    padding: 8px 0 16px; z-index: 1;
+}
+
+.card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.04);
+}
+
+@media (max-width: 900px) {
+    .layout { grid-template-columns: 84px 1fr; }
+    .item span { display: inline-block; }
+}
