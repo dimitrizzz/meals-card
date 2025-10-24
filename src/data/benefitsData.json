@@ -1,0 +1,15 @@
+[
+  { "id": 1, "am": "123456789", "adt": "ΑΒΓ 123456", "fullname": "Αθηνά Στάρκιν", "mobile": "6999999999", "status": "active", "hasCard": true },
+  { "id": 2, "am": "987654321", "adt": "ΑΒΓ 654321", "fullname": "Γεώργιος Επικοινωνάκης", "mobile": "6900000000", "status": "inactive", "hasCard": false },
+  { "id": 3, "am": "456789123", "adt": "ΑΒΓ 111222", "fullname": "Δημόκριτος Στράκη", "mobile": "6988888888", "status": "active", "hasCard": false },
+  { "id": 4, "am": "111222333", "adt": "ΑΒΓ 222333", "fullname": "Αμαλία Στάρκιν", "mobile": "6977777777", "status": "active", "hasCard": true },
+  { "id": 5, "am": "123456789", "adt": "ΑΒΓ 123456", "fullname": "Αθηνά Στάρκιν", "mobile": "6999999999", "status": "active", "hasCard": true },
+  { "id": 6, "am": "987654321", "adt": "ΑΒΓ 654321", "fullname": "Γεώργιος Επικοινωνάκης", "mobile": "6900000000", "status": "inactive", "hasCard": false },
+  { "id": 7, "am": "456789123", "adt": "ΑΒΓ 111222", "fullname": "Δημόκριτος Στράκη", "mobile": "6988888888", "status": "active", "hasCard": false },
+  { "id": 8, "am": "111222333", "adt": "ΑΒΓ 222333", "fullname": "Αμαλία Στάρκιν", "mobile": "6977777777", "status": "active", "hasCard": true },
+  { "id": 9, "am": "123456789", "adt": "ΑΒΓ 123456", "fullname": "Αθηνά Στάρκιν", "mobile": "6999999999", "status": "active", "hasCard": true },
+  { "id": 10, "am": "987654321", "adt": "ΑΒΓ 654321", "fullname": "Γεώργιος Επικοινωνάκης", "mobile": "6900000000", "status": "inactive", "hasCard": false },
+  { "id": 11, "am": "456789123", "adt": "ΑΒΓ 111222", "fullname": "Δημόκριτος Στράκη", "mobile": "6988888888", "status": "active", "hasCard": false },
+  { "id": 12, "am": "111222333", "adt": "ΑΒΓ 222333", "fullname": "Αμαλία Στάρκιν", "mobile": "6977777777", "status": "active", "hasCard": true }
+
+]

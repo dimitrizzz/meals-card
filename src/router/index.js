@@ -9,12 +9,17 @@ import FAQView from '@/views/FAQView.vue'
 import ContactView from '@/views/ContactView.vue'
 
 import TopupsHistoryView from '@/views/TopupsHistoryView.vue'
+import BeneficiariesManageView from "@/views/BeneficiariesManageView.vue";
 
 const routes = [
     { path: '/', name: 'home', component: HomeView, meta: { title: 'Αρχική' } },
     { path: '/beneficiaries', name: 'beneficiaries', component: BeneficiariesView, meta: { title: 'Δικαιούχοι' } },
     { path: '/beneficiaries/upload', name: 'beneficiaries-upload', component: UploadBeneficiariesView, meta: { title: 'Προσθήκη Δικαιούχων' } },
+    { path: '/beneficiaries/manage', name: 'beneficiaries-manage', component: BeneficiariesManageView, meta: { title: 'Προβολή & διαχείριση δικαιούχων' } },
+
     { path: '/cards', name: 'cards', component: CardsView, meta: { title: 'Διαχείριση Καρτών' } },
+    { path: '/cards/upload', name: 'cards-upload', component: UploadBeneficiariesView, meta: { title: 'Παραγγελία νέας κάρτας' } },
+
     { path: '/history', name: 'history', component: HistoryView, meta: { title: 'Ιστορικό' } },
 
     { path: '/history/topups', name: 'history-topups', component: TopupsHistoryView, meta: { title: 'Ιστορικό Φορτίσεων' } },

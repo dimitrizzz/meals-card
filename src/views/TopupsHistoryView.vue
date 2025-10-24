@@ -49,7 +49,7 @@
                 v-model="search"
                 type="text"
                 placeholder="Αναζήτησε φόρτιση…"
-                class="w-full text-sm border border-gray-300 bg-white rounded-lg pl-9 pr-3 py-2 outline-none focus:ring-2 focus:ring-indigo-200"
+                class="w-full text-sm border border-gray-300 bg-white rounded-lg pl-9 pr-3 py-2 outline-none focus:ring-2 focus:ring-indigo-200 placeholder-gray-400"
             />
             <RiSearchLine class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"/>
           </div>
@@ -91,6 +91,7 @@
               :key="t.value"
               @click="activeTab = t.value"
               class="px-3 py-1.5 rounded-lg text-sm border transition"
+
               :class="activeTab === t.value
                 ? 'bg-indigo-50 border-indigo-200 text-indigo-700'
                 : 'bg-white border-gray-300 text-gray-600 hover:bg-gray-50'"
@@ -210,7 +211,7 @@
       </div>
 
       <div v-if="grouped.length === 0" class="text-center text-gray-500 py-16">
-        Δεν υπάρχουν φορτίσεις για τα επιλεγμένα φίλτρα.
+        Δεν υπάρχουν φορτίσεις για τα επιλεγμένα φίλτρα
       </div>
     </div>
   </section>

@@ -9,50 +9,54 @@
 
     <main class="flex flex-col items-center justify-center flex-1">
       <h2 class="text-lg sm:text-xl mb-8 font-medium">
-        Καλησπέρα <span class="font-semibold ">George</span>, τι θα ήθελες να κάνεις σήμερα;
+        Καλησπέρα <span class="font-semibold">George</span>, τι θα ήθελες να κάνεις σήμερα;
       </h2>
 
       <div class="flex flex-col sm:flex-row gap-6">
-        <div
-            class="group bg-white shadow-sm border border-gray-200 rounded-2xl p-8 w-72 text-center transition cursor-pointer hover:bg-[#2563eb] hover:text-white hover:shadow-md"
+        <RouterLink
+            :to="{ name: 'cards-upload' }"
+            class="group bg-white shadow-sm border border-gray-200 rounded-2xl p-8 w-72 text-center transition hover:bg-[#2563eb] hover:text-white hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           <div class="flex justify-center mb-4 transition-colors duration-200 group-hover:text-white">
-            <RiBankCard2Line class="w-16 h-16  group-hover:text-white" />
+            <RiBankCard2Line class="w-16 h-16 group-hover:text-white" />
           </div>
-          <h3 class="font-semibold  mb-2 transition-colors duration-200 group-hover:text-white">
+          <h3 class="font-semibold mb-2 transition-colors duration-200 group-hover:text-white">
             Παραγγελία νέας κάρτας
           </h3>
           <p class="text-sm text-gray-400 transition-colors duration-200 group-hover:text-gray-100">
             Επίλεξε δικαιούχους από τη λίστα για την παραγγελία νέων καρτών.
           </p>
-        </div>
+        </RouterLink>
 
-        <div
-            class="group bg-white shadow-sm border border-gray-200 rounded-2xl p-8 w-72 text-center transition cursor-pointer hover:bg-[#2563eb] hover:text-white hover:shadow-md"
+        <RouterLink
+            :to="{ name: 'history-topups' }"
+            class="group bg-white shadow-sm border border-gray-200 rounded-2xl p-8 w-72 text-center transition hover:bg-[#2563eb] hover:text-white hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           <div class="flex justify-center mb-4 transition-colors duration-200 group-hover:text-white">
-            <RiBankCard2Line class="w-16 h-16  group-hover:text-white" />
+            <RiBankCard2Line class="w-16 h-16 group-hover:text-white" />
           </div>
-          <h3 class="font-semibold  mb-2 transition-colors duration-200 group-hover:text-white">
-            Επίλεξε δικαιούχους από τη λίστα για την παραγγελία νέων καρτών.
+          <h3 class="font-semibold mb-2 transition-colors duration-200 group-hover:text-white">
+            Φόρτιση καρτών
           </h3>
           <p class="text-sm text-gray-400 transition-colors duration-200 group-hover:text-gray-100">
             Φόρτισε τις ήδη υπάρχουσες κάρτες
           </p>
-        </div>
-        <div
-            class="group bg-white shadow-sm border border-gray-200 rounded-2xl p-8 w-72 text-center transition cursor-pointer hover:bg-[#2563eb] hover:text-white hover:shadow-md"
+        </RouterLink>
+
+        <RouterLink
+            :to="{ name: 'cards' }"
+            class="group bg-white shadow-sm border border-gray-200 rounded-2xl p-8 w-72 text-center transition hover:bg-[#2563eb] hover:text-white hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           <div class="flex justify-center mb-4 transition-colors duration-200 group-hover:text-white">
-            <RiInfoCardLine class="w-16 h-16  group-hover:text-white" />
+            <RiInfoCardLine class="w-16 h-16 group-hover:text-white" />
           </div>
-          <h3 class="font-semibold  mb-2 transition-colors duration-200 group-hover:text-white">
+          <h3 class="font-semibold mb-2 transition-colors duration-200 group-hover:text-white">
             Eπισκόπηση καρτών
           </h3>
           <p class="text-sm text-gray-400 transition-colors duration-200 group-hover:text-gray-100">
             Δες τη συνολική εικόνα όλων των καρτών και της τρέχουσας κατάστασής τους
           </p>
-        </div>
+        </RouterLink>
       </div>
 
       <p class="mt-10 text-sm text-gray-500">
@@ -65,5 +69,6 @@
 </template>
 
 <script setup>
-import {RiBankCard2Line, RiInfoCardLine} from '@remixicon/vue'
+import { RouterLink } from 'vue-router'
+import { RiBankCard2Line, RiInfoCardLine } from '@remixicon/vue'
 </script>

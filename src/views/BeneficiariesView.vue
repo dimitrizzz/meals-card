@@ -14,11 +14,11 @@
 
       <div class="flex flex-col sm:flex-row gap-6">
         <RouterLink
-            to="/beneficiaries/upload"
+            :to="{ name: 'beneficiaries-upload' }"
             class="group bg-white shadow-sm border border-gray-200 rounded-2xl p-8 w-72 text-center transition hover:bg-[#2563eb] hover:text-white hover:shadow-md"
         >
           <div class="flex justify-center mb-4 transition-colors duration-200 group-hover:text-white">
-            <RiUserAddLine class="w-16 h-16 group-hover:text-white" />
+            <RiUserAddLine class="w-16 h-16 group-hover:text-white"/>
           </div>
           <h3 class="font-semibold mb-2 transition-colors duration-200 group-hover:text-white">
             Προσθήκη νέων δικαιούχων
@@ -28,11 +28,12 @@
           </p>
         </RouterLink>
 
-        <div
-            class="group bg-white shadow-sm border border-gray-200 rounded-2xl p-8 w-72 text-center transition cursor-pointer hover:bg-[#2563eb] hover:text-white hover:shadow-md"
+        <RouterLink
+            :to="{ name: 'beneficiaries-manage' }"
+            class="group bg-white shadow-sm border border-gray-200 rounded-2xl p-8 w-72 text-center transition hover:bg-[#2563eb] hover:text-white hover:shadow-md"
         >
           <div class="flex justify-center mb-4 transition-colors duration-200 group-hover:text-white">
-            <RiUserSettingsLine class="w-16 h-16 group-hover:text-white" />
+            <RiUserSettingsLine class="w-16 h-16 group-hover:text-white"/>
           </div>
           <h3 class="font-semibold mb-2 transition-colors duration-200 group-hover:text-white">
             Προβολή & διαχείριση δικαιούχων
@@ -40,7 +41,7 @@
           <p class="text-sm text-gray-400 transition-colors duration-200 group-hover:text-gray-100">
             Δες τους δικαιούχους & επεξεργάσου τα στοιχεία ή τις παροχές τους
           </p>
-        </div>
+        </RouterLink>
       </div>
 
       <p class="mt-10 text-sm text-gray-500">
@@ -52,5 +53,6 @@
 </template>
 
 <script setup>
-import { RiUserAddLine, RiUserSettingsLine } from '@remixicon/vue'
+import {RouterLink} from 'vue-router'
+import {RiUserAddLine, RiUserSettingsLine} from '@remixicon/vue'
 </script>
