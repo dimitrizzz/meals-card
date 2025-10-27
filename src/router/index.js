@@ -16,12 +16,15 @@ const routes = [
     { path: '/beneficiaries', name: 'beneficiaries', component: BeneficiariesView, meta: { title: 'Δικαιούχοι' } },
     { path: '/beneficiaries/upload', name: 'beneficiaries-upload', component: UploadBeneficiariesView, meta: { title: 'Προσθήκη Δικαιούχων' } },
     { path: '/beneficiaries/manage', name: 'beneficiaries-manage', component: BeneficiariesManageView, meta: { title: 'Προβολή & διαχείριση δικαιούχων' } },
+    { path: '/beneficiaries/:id', name: 'beneficiary-details', component: () => import('@/views/BeneficiaryDetailsView.vue'), props: true},
+
 
     { path: '/cards', name: 'cards', component: CardsView, meta: { title: 'Διαχείριση Καρτών' } },
     { path: '/cards/upload', name: 'cards-upload', component: UploadBeneficiariesView, meta: { title: 'Παραγγελία νέας κάρτας' } },
+    { path: '/cards/topups', name: 'cards-topups', component: TopupsHistoryView, meta: { title: 'Ιστορικό Φορτίσεων' } },
+
 
     { path: '/history', name: 'history', component: HistoryView, meta: { title: 'Ιστορικό' } },
-
     { path: '/history/topups', name: 'history-topups', component: TopupsHistoryView, meta: { title: 'Ιστορικό Φορτίσεων' } },
 
     { path: '/faq', name: 'faq', component: FAQView, meta: { title: 'Συχνές Ερωτήσεις' } },

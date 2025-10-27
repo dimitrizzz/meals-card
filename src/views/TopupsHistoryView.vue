@@ -1,11 +1,22 @@
 <template>
   <section class="flex flex-col h-full w-full bg-[#f5f7fb] text-gray-800 px-6 lg:px-8 py-6">
-    <header class="mb-4">
+    
+    <header class="mb-6 flex items-center justify-between w-full">
+        <div>
       <h1 class="text-xl font-semibold">Ιστορικό Φορτίσεων</h1>
-      <p class="text-sm text-gray-500">
+          <p class="text-sm text-gray-500">
         Δες τις φορτίσεις που έγιναν, κατέβασε τα reports που χρειάζεσαι και επανάλαβε μαζικά φορτίσεις.
       </p>
-    </header>
+        </div>
+
+        <RouterLink
+            to="/history"
+            class="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-50"
+        >
+          Επιστροφή
+          <RiArrowGoBackLine class="w-4 h-4" />
+        </RouterLink>
+      </header>
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-4">
       <div class="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm">
@@ -43,73 +54,93 @@
 
     <div class="bg-white border border-gray-200 rounded-3xl shadow-sm p-4 md:p-5">
       <div class="flex flex-col lg:justify-between gap-3 mb-3">
-        <div class=" flex gap-3 justify-between">
-          <div class="relative">
+        <div class="flex flex-col md:flex-row md:items-center gap-3">
+          <div class="relative w-full md:flex-1 min-w-[340px]">
             <input
                 v-model="search"
                 type="text"
                 placeholder="Αναζήτησε φόρτιση…"
-                class="w-full text-sm border border-gray-300 bg-white rounded-lg pl-9 pr-3 py-2 outline-none focus:ring-2 focus:ring-indigo-200 placeholder-gray-400"
+                class="w-full text-sm border border-gray-300 bg-white rounded-lg pl-9 pr-3 py-2
+             outline-none focus:ring-2 focus:ring-indigo-200 placeholder-gray-400"
             />
-            <RiSearchLine class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"/>
+            <RiSearchLine class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
           </div>
 
-          <div class="flex items-center gap-2 ">
+          <div class="flex items-center gap-2 md:shrink-0">
             <input
                 v-model="dateFrom"
                 type="date"
-                class="text-sm border border-gray-300 bg-white rounded-lg px-2 py-2 outline-none focus:ring-2 focus:ring-indigo-200"
+                class="w-[140px] text-sm border border-gray-300 bg-white rounded-lg px-2 py-2
+             outline-none focus:ring-2 focus:ring-indigo-200"
             />
             <span class="text-gray-400 text-sm">–</span>
             <input
                 v-model="dateTo"
                 type="date"
-                class="text-sm border border-gray-300 bg-white rounded-lg px-2 py-2 outline-none focus:ring-2 focus:ring-indigo-200"
+                class="w-[140px] text-sm border border-gray-300 bg-white rounded-lg px-2 py-2
+             outline-none focus:ring-2 focus:ring-indigo-200"
             />
 
-            <div class="hidden md:flex items-center gap-1 ml-1">
-              <button
-                  class="px-2.5 py-1.5 text-xs rounded-md border border-gray-300"
-                  :class="period === '15d' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-700'"
-                  @click="period = '15d'"
-              >
-                15ήμερο
-              </button>
-              <button
-                  class="px-2.5 py-1.5 text-xs rounded-md border border-gray-300"
-                  :class="period === 'month' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-700'"
-                  @click="period = 'month'"
-              >
-                Μήνας
-              </button>
+            <div class="hidden md:flex items-center ml-1">
+              <div class="inline-flex rounded-lg bg-sky-100 p-1 shadow-inner">
+                <button
+                    class="px-3 py-1.5 text-xs rounded-lg transition font-medium focus:outline-none"
+                    :class="period === '15d' ? 'bg-white text-sky-700 shadow-sm' : 'bg-transparent text-gray-600 hover:text-sky-700'"
+                    @click="period = '15d'"
+                    :aria-pressed="period === '15d'"
+                >
+                  15ήμερο
+                </button>
+                <button
+                    class="px-3 py-1.5 text-xs rounded-lg transition font-semibold focus:outline-none"
+                    :class="period === 'month' ? 'bg-white text-sky-700 shadow-sm' : 'bg-transparent text-gray-600 hover:text-sky-700'"
+                    @click="period = 'month'"
+                    :aria-pressed="period === 'month'"
+                >
+                  Μήνας
+                </button>
+              </div>
             </div>
           </div>
         </div>
-        <div class="flex flex-wrap items-center gap-2 ">
-          <button
-              v-for="t in tabs"
-              :key="t.value"
-              @click="activeTab = t.value"
-              class="px-3 py-1.5 rounded-lg text-sm border transition"
 
-              :class="activeTab === t.value
-                ? 'bg-indigo-50 border-indigo-200 text-indigo-700'
-                : 'bg-white border-gray-300 text-gray-600 hover:bg-gray-50'"
-          >
-            {{ t.label }}
-          </button>
-          <div class="flex items-center gap-1 ml-2">
+
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-4"
+             v-if="grouped.length !== 0">
+          <div class="flex flex-wrap gap-2">
             <button
-                class="inline-flex items-center gap-2 rounded-lg bg-[#2563eb] text-white text-sm px-3 py-2 shadow hover:brightness-110"
-                @click="exportAs('all')"
+                class="px-3 py-2 text-sm rounded-lg border border-gray-200 shadow-sm transition-colors cursor-pointer"
+                :class="tab === 'all' ? 'bg-[#eef6ff] text-sky-600 border-sky-600' : 'bg-gray-200 text-gray-700'"
+                @click="tab = 'all'"
             >
-              <RiDownloadLine class="w-4 h-4"/>
-              <span class="hidden sm:inline">Εξαγωγή</span>
+              Όλες οι φορτίσεις
+            </button>
+
+            <button
+                class="px-3 py-2 text-sm rounded-lg border border-gray-200 shadow-sm transition-colors cursor-pointer"
+                :class="tab === 'success' ? 'bg-[#eef6ff] text-sky-600 border-sky-600' : 'bg-gray-200 text-gray-700'"
+                @click="tab = 'success'"
+            >
+              Επιτυχείς φορτίσεις
+            </button>
+
+            <button
+                class="px-3 py-2 text-sm rounded-lg border border-gray-200 shadow-sm transition-colors cursor-pointer"
+                :class="tab === 'failed' ? 'bg-[#eef6ff] text-sky-600 border-sky-600' : 'bg-gray-200 text-gray-700'"
+                @click="tab = 'failed'"
+            >
+              Αποτυχημένες φορτίσεις
             </button>
           </div>
+
+          <button
+              class="inline-flex items-center gap-2 bg-[#2563eb] text-white text-sm px-4 py-2 rounded-lg shadow hover:brightness-110 whitespace-nowrap self-end sm:self-auto"
+              @click="exportAs('all')"
+          >
+            <RiDownloadLine class="w-4 h-4"/>
+            <span>Εξαγωγή</span>
+          </button>
         </div>
-
-
       </div>
 
       <div
@@ -141,13 +172,10 @@
             </div>
           </div>
 
-          <div class="flex items-center gap-3">
-
-            <RiArrowDownSLine
-                class="w-5 h-5 text-gray-500 transition-transform duration-200"
-                :class="open[group.key] ? 'rotate-180' : ''"
-            />
-          </div>
+          <RiArrowDownSLine
+              class="w-5 h-5 text-gray-500 transition-transform duration-200"
+              :class="open[group.key] ? 'rotate-180' : ''"
+          />
         </button>
 
         <transition name="accordion">
@@ -161,7 +189,6 @@
                   <th class="text-left font-medium px-4 py-3">Ημερομηνία φόρτισης</th>
                   <th class="text-left font-medium px-4 py-3">Ποσό φόρτισης</th>
                   <th class="text-left font-medium px-4 py-3">Κατάσταση</th>
-                  <th class="w-10"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -191,19 +218,19 @@
                 </tr>
 
                 <tr v-if="group.rows.length === 0">
-                  <td colspan="6" class="px-4 py-6 text-center text-gray-500">
+                  <td colspan="5" class="px-4 py-6 text-center text-gray-500">
                     Δεν βρέθηκαν αποτελέσματα για τα φίλτρα που επέλεξες.
                   </td>
                 </tr>
                 </tbody>
               </table>
-              <div class="flex  justify-end mb-6">
-              <span
-                  class="inline-flex items-center gap-2 rounded-lg bg-[#2563eb] text-white text-xs md:text-sm px-3 py-2 shadow hover:brightness-110"
-                  @click.stop="duplicateGroup(group)"
-              >
-              Δημιουργία Αντιγράφου
-            </span>
+              <div class="flex justify-end mb-6">
+                <span
+                    class="inline-flex items-center gap-2 rounded-lg bg-[#2563eb] text-white text-xs md:text-sm px-3 py-2 shadow hover:brightness-110 cursor-pointer"
+                    @click.stop="duplicateGroup(group)"
+                >
+                  Δημιουργία Αντιγράφου
+                </span>
               </div>
             </div>
           </div>
@@ -226,23 +253,16 @@ import {
   RiDownloadLine,
   RiSearchLine,
   RiBankCardLine,
-  RiArrowDownSLine
+  RiArrowDownSLine,RiArrowGoBackLine
 } from '@remixicon/vue'
 import {computed, reactive, ref, watch} from 'vue'
-
 import topupsData from '@/data/history.json'
 
 const search = ref('')
-const activeTab = ref('all')
+const tab = ref('all')
 const dateFrom = ref('')
 const dateTo = ref('')
 const period = ref('month')
-
-const tabs = [
-  {value: 'all', label: 'Όλες οι φορτίσεις'},
-  {value: 'success', label: 'Επιτυχείς φορτίσεις'},
-  {value: 'failed', label: 'Αποτυχημένες φορτίσεις'}
-]
 
 const rows = reactive(topupsData.rows ?? [])
 
@@ -251,9 +271,9 @@ const filtered = computed(() => {
   return rows.filter(r => {
     const matchesSearch = !q || r.id.toLowerCase().includes(q) || r.name.toLowerCase().includes(q)
     const matchesTab =
-        activeTab.value === 'all' ||
-        (activeTab.value === 'success' && r.status === 'success') ||
-        (activeTab.value === 'failed' && r.status === 'failed')
+        tab.value === 'all' ||
+        (tab.value === 'success' && r.status === 'success') ||
+        (tab.value === 'failed' && r.status === 'failed')
 
     const ts = new Date(r.datetime).getTime()
     const fromOk = !dateFrom.value || ts >= new Date(dateFrom.value).getTime()
@@ -318,15 +338,24 @@ function formatDateTime(iso) {
 
 function monthName(m) {
   const names = {
-    '01': 'ΑΥΓΟΥΣΤΟΣ', '02': 'ΦΕΒΡΟΥΑΡΙΟΣ', '03': 'ΜΑΡΤΙΟΣ', '04': 'ΑΠΡΙΛΙΟΣ',
-    '05': 'ΜΑΪΟΣ', '06': 'ΙΟΥΝΙΟΣ', '07': 'ΙΟΥΛΙΟΣ', '08': 'ΑΥΓΟΥΣΤΟΣ',
-    '09': 'ΣΕΠΤΕΜΒΡΙΟΣ', '10': 'ΟΚΤΩΒΡΙΟΣ', '11': 'ΝΟΕΜΒΡΙΟΣ', '12': 'ΔΕΚΕΜΒΡΙΟΣ'
+    '01': 'ΙΑΝΟΥΑΡΙΟΣ',
+    '02': 'ΦΕΒΡΟΥΑΡΙΟΣ',
+    '03': 'ΜΑΡΤΙΟΣ',
+    '04': 'ΑΠΡΙΛΙΟΣ',
+    '05': 'ΜΑΪΟΣ',
+    '06': 'ΙΟΥΝΙΟΣ',
+    '07': 'ΙΟΥΛΙΟΣ',
+    '08': 'ΑΥΓΟΥΣΤΟΣ',
+    '09': 'ΣΕΠΤΕΜΒΡΙΟΣ',
+    '10': 'ΟΚΤΩΒΡΙΟΣ',
+    '11': 'ΝΟΕΜΒΡΙΟΣ',
+    '12': 'ΔΕΚΕΜΒΡΙΟΣ'
   }
   return names[m] ?? m
 }
 
 function exportAs(kind) {
-  console.log('Export:', kind, {from: dateFrom.value, to: dateTo.value, tab: activeTab.value})
+  console.log('Export:', kind, {from: dateFrom.value, to: dateTo.value, tab: tab.value})
   alert(`Εξαγωγή (${kind}) σε εξέλιξη…`)
 }
 
@@ -334,10 +363,4 @@ function duplicateGroup(group) {
   console.log('Duplicate group:', group)
   alert(`Δημιουργία αντιγράφου για ${group.title}`)
 }
-
-function repeatTopup(row) {
-  console.log('Repeat topup:', row)
-  alert(`Επανάληψη φόρτισης για ${row.name} (${formatCurrency(row.amount)})`)
-}
 </script>
-

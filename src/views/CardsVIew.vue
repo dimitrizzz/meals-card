@@ -29,7 +29,7 @@
         </RouterLink>
 
         <RouterLink
-            :to="{ name: 'history-topups' }"
+            :to="{ name: 'cards-topups' }"
             class="group bg-white shadow-sm border border-gray-200 rounded-2xl p-8 w-72 text-center transition hover:bg-[#2563eb] hover:text-white hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           <div class="flex justify-center mb-4 transition-colors duration-200 group-hover:text-white">
